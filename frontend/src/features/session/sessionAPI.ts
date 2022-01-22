@@ -50,3 +50,19 @@ export function deleteUser(payload: string) {
       .catch((error: any) => reject(error));
   });
 }
+
+export function accessMemberData(auth_token: string) {
+  const config: any = {
+    headers: {
+      Authorization: auth_token,
+    },
+  };
+  return new Promise<any>((resolve, reject) => {
+    axios
+      .get(`${BASE_URL}/member-data`, config)
+      .then((response: any) => {
+        resolve(response.data);
+      })
+      .catch((error: any) => reject(error));
+  });
+}

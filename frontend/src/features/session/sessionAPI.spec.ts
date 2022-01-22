@@ -1,5 +1,10 @@
 import { UserState, SessionRequest, SessionRequestData } from "./sessionSlice";
-import { fetchUser, deleteUser, registerUser } from "./sessionAPI";
+import {
+  fetchUser,
+  deleteUser,
+  registerUser,
+  accessMemberData,
+} from "./sessionAPI";
 
 describe("session API", () => {
   const sessionRequest: SessionRequest = {
@@ -33,10 +38,17 @@ describe("session API", () => {
   });
 
   it("should be able to access member data ", async () => {
-    const sessionState = await fetchUser(payload);
-    const auth_token = sessionState.auth_token;
-    const user = sessionState.user as UserState;
-    expect(user.email).toBe(initialUser.email);
+    try {
+      await registerUser(payload);
+    } catch (error) {
+      console.log("User could not be registered.");
+    } finally {
+      const sessionState = await fetchUser(payload);
+      const auth_token = sessionState.auth_token;
+      const expectedMemberData = "If you see this, you're in!";
+      const memberData = await accessMemberData(auth_token);
+      expect(memberData.message).toBe(expectedMemberData);
+    }
   });
 
   it("should handle deleting a user", async () => {

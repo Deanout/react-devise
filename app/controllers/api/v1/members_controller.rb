@@ -7,7 +7,7 @@ class Api::V1::MembersController < ApplicationController
     render json: {
       message: "If you see this, you're in!",
       user: user
-    }
+    }, status: :ok
   end
 
   private
