@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project contains a working React/Redux/TypeScript frontend application. The application communicates with the backend Ruby on Rails 7 API running devise, devise-jwt, and rack-cors gems.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The React application will (hopefully) contain various tests for sanity checking the project, including unit and integration tests.
